@@ -8,12 +8,17 @@ workflows:
       xcode: latest
       cocoapods: default
     scripts:
-      - name: Get dependencies
+      - name: Get Flutter dependencies
         script: |
           flutter pub get
+      - name: Install CocoaPods dependencies
+        script: |
+          cd ios
+          pod install
+          cd ..
       - name: Flutter build ipa
         script: |
-          flutter build ipa --release
+          flutter build ipa --release --no-codesign
     artifacts:
       - build/ios/ipa/*.ipa
     publishing:

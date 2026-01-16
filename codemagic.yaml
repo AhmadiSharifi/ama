@@ -25,21 +25,34 @@ workflows:
           flutter build ios --release --no-codesign
       - name: Create IPA from archive
         script: |
-          cd build/ios/archive
-          xcodebuild -exportArchive \
-            -archivePath Runner.xcarchive \
-            -exportPath . \
-            -exportOptionsPlist /dev/null \
-            CODE_SIGN_IDENTITY="" \
-            CODE_SIGNING_REQUIRED=NO || true
-          # Create IPA manually if export failed
-          if [ ! -f "Runner.ipa" ]; then
+          ARCHIVE_PATH="build/ios/archive/Runner.xcarchive"
+          if [ -d "$ARCHIVE_PATH" ]; then
+            cd build/ios/archive
+            # Create IPA manually from xcarchive
             mkdir -p Payload
-            cp -r Runner.xcarchive/Products/Applications/Runner.app Payload/
+            if [ -d "Runner.xcarchive/Products/Applications/Runner.app" ]; then
+              cp -r Runner.xcarchive/Products/Applications/Runner.app Payload/
+            elif [ -d "../Runner.app" ]; then
+              cp -r ../Runner.app Payload/
+            else
+              echo "Runner.app not found, searching..."
+              find . -name "Runner.app" -type d | head -1 | xargs -I {} cp -r {} Payload/
+            fi
             zip -r Runner.ipa Payload
             rm -rf Payload
+            cd ../../..
+          else
+            echo "Archive not found at $ARCHIVE_PATH"
+            # Try alternative location
+            if [ -d "build/ios/iphoneos/Runner.app" ]; then
+              mkdir -p build/ios/archive/Payload
+              cp -r build/ios/iphoneos/Runner.app build/ios/archive/Payload/
+              cd build/ios/archive
+              zip -r Runner.ipa Payload
+              rm -rf Payload
+              cd ../../..
+            fi
           fi
-          cd ../../..
     artifacts:
       - build/ios/archive/*.ipa
       - build/ios/archive/Runner.xcarchive

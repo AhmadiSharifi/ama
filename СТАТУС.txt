@@ -1,0 +1,7 @@
+Сборка запущена заново.
+
+Проверка через 5 минут:
+- build\app\outputs\flutter-apk\app-release.apk
+- build\app\outputs\bundle\release\app-release.aab
+
+Если файлов нет через 5-10 минут - сборка завершилась с ошибкой.

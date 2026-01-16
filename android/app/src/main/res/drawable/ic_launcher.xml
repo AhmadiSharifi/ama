@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <!-- Темный фон -->
+    <path
+        android:fillColor="#000000"
+        android:pathData="M0,0h108v108h-108z"/>
+    
+    <!-- Золотая башня/замок -->
+    <path
+        android:fillColor="#D4AF37"
+        android:pathData="M54,15 L42,15 L42,25 L38,25 L38,35 L42,35 L42,50 L38,50 L38,60 L42,60 L42,70 L54,70 L66,70 L66,60 L70,60 L70,50 L66,50 L66,35 L70,35 L70,25 L66,25 L66,15 Z"/>
+    
+    <!-- Бойницы башни -->
+    <path
+        android:fillColor="#000000"
+        android:pathData="M48,30 L48,40 L60,40 L60,30 Z"/>
+    <path
+        android:fillColor="#000000"
+        android:pathData="M48,45 L48,55 L60,55 L60,45 Z"/>
+    
+    <!-- Золотые монеты внизу -->
+    <!-- Монета 1 -->
+    <path
+        android:fillColor="#D4AF37"
+        android:pathData="M30,70 A10,10 0 1,1 30,90 A10,10 0 1,1 30,70 Z"/>
+    <path
+        android:fillColor="#000000"
+        android:pathData="M30,73 A7,7 0 1,1 30,87 A7,7 0 1,1 30,73 Z"/>
+    <path
+        android:fillColor="#D4AF37"
+        android:pathData="M28,78 L32,78 L32,82 L28,82 Z"/>
+    
+    <!-- Монета 2 (центральная, больше) -->
+    <path
+        android:fillColor="#D4AF37"
+        android:pathData="M54,73 A12,12 0 1,1 54,97 A12,12 0 1,1 54,73 Z"/>
+    <path
+        android:fillColor="#000000"
+        android:pathData="M54,76 A9,9 0 1,1 54,94 A9,9 0 1,1 54,76 Z"/>
+    <path
+        android:fillColor="#D4AF37"
+        android:pathData="M51,83 L57,83 L57,87 L51,87 Z"/>
+    
+    <!-- Монета 3 -->
+    <path
+        android:fillColor="#D4AF37"
+        android:pathData="M78,70 A10,10 0 1,1 78,90 A10,10 0 1,1 78,70 Z"/>
+    <path
+        android:fillColor="#000000"
+        android:pathData="M78,73 A7,7 0 1,1 78,87 A7,7 0 1,1 78,73 Z"/>
+    <path
+        android:fillColor="#D4AF37"
+        android:pathData="M76,78 L80,78 L80,82 L76,82 Z"/>
+</vector>

@@ -20,11 +20,29 @@ workflows:
           cd ios
           pod install
           cd ..
-      - name: Flutter build ipa
+      - name: Flutter build iOS archive
         script: |
-          flutter build ipa --release --no-codesign
+          flutter build ios --release --no-codesign
+      - name: Create IPA from archive
+        script: |
+          cd build/ios/archive
+          xcodebuild -exportArchive \
+            -archivePath Runner.xcarchive \
+            -exportPath . \
+            -exportOptionsPlist /dev/null \
+            CODE_SIGN_IDENTITY="" \
+            CODE_SIGNING_REQUIRED=NO || true
+          # Create IPA manually if export failed
+          if [ ! -f "Runner.ipa" ]; then
+            mkdir -p Payload
+            cp -r Runner.xcarchive/Products/Applications/Runner.app Payload/
+            zip -r Runner.ipa Payload
+            rm -rf Payload
+          fi
+          cd ../../..
     artifacts:
-      - build/ios/ipa/*.ipa
+      - build/ios/archive/*.ipa
+      - build/ios/archive/Runner.xcarchive
     publishing:
       email:
         recipients:

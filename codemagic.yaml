@@ -11,8 +11,9 @@ workflows:
       - name: Get Flutter dependencies
         script: |
           flutter pub get
-      - name: Create iOS project
+      - name: Fix iOS project
         script: |
+          rm -rf ios/Runner.xcodeproj
           flutter create --platforms=ios .
       - name: Install CocoaPods dependencies
         script: |

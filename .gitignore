@@ -34,6 +34,7 @@ migrate_working_dir/
 
 # Flutter SDK (не нужен в репозитории)
 /flutter/
+flutter/
 flutter.zip
 
 # Build artifacts (очень большие)
